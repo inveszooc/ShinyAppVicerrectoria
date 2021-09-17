@@ -17,7 +17,6 @@ data <- read_csv(file) |>
          certificado = "XXIV Encuentro Nacional de Investigaciones") |> 
   select(cedula,enlace,certificado)
 
-
 ui <- dashboardPage(
   dashboardHeader(title = "Vicerrectoría de Investigaciones", titleWidth = 350),
   dashboardSidebar(
