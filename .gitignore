@@ -3,5 +3,6 @@
 *.sass.map
 *.scss.map
 
-#Data private about Vicerectoria
+.Renviron
+
 data/
