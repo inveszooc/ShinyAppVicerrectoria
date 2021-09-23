@@ -3,14 +3,14 @@ library(shinydashboard)
 library(tidyverse)
 library(here)
 library(DT)
-library(plotly)
 library(readxl)
-library(crosstalk)
 
 source(here("data","files.R"))
 
 data <- read_csv(file) |> 
-  mutate(enlace = str_c("https://drive.google.com/uc?id=",id,"&export=download&authuser=0"),
+  mutate(enlace = str_remove(enlace, ".*file/d/"),
+         enlace = str_remove(enlace, "/view?.*"),
+         enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
          enlace= str_c("<a href=",
                        enlace,
                        ">Download</a>"),
@@ -61,6 +61,7 @@ server <- function(input, output) {
   output$salida <- renderDT({
     data |> filter(cedula == dato()) |> 
       datatable(escape = FALSE,
+                options = list(dom = 't'),
                 colnames = c("Número Identificación", "Certificado", "Tipo"))
   })
 }
