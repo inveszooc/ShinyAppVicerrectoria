@@ -1,0 +1,13 @@
+name: Prueba
+title: Prueba
+username:
+account: bryan-arias
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4795126
+bundleId: 5103846
+url: https://bryan-arias.shinyapps.io/Prueba/
+when: 1633381196.92161
+lastSyncTime: 1633381196.92161
+asMultiple: FALSE
+asStatic: FALSE
