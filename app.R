@@ -7,7 +7,7 @@ library(readxl)
 
 source(here("data","files.R"))
 
-data <- read_csv(file) |> 
+data1 <- read_csv(file1) |> 
   mutate(enlace = str_remove(enlace, ".*file/d/"),
          enlace = str_remove(enlace, "/view?.*"),
          enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
@@ -17,7 +17,19 @@ data <- read_csv(file) |>
          certificado = "XXIV Encuentro Nacional de Investigaciones") |> 
   select(cedula,enlace,certificado)
 
-ui <- dashboardPage(
+data2 <- read_csv(file2) |> 
+  mutate(enlace = str_remove(enlace, ".*file/d/"),
+         enlace = str_remove(enlace, "/view?.*"),
+         enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
+         enlace= str_c("<a href=",
+                       enlace,
+                       ">Download</a>"),
+         certificado = "IV Encuentro Nacional de Semilleros de Investigación") |> 
+  select(cedula,enlace,certificado)
+
+data <- rbind(data1, data2)
+
+ui <- dashboardPage(skin = "yellow",
   dashboardHeader(title = "Vicerrectoría de Investigaciones", titleWidth = 350),
   dashboardSidebar(
     sidebarMenu(
