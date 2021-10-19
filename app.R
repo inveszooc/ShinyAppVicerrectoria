@@ -15,7 +15,7 @@ data1 <- read_csv(file1) |>
                        enlace,
                        ">Download</a>"),
          certificado = "XXIV Encuentro Nacional de Investigaciones") |> 
-  select(cedula,enlace,certificado)
+  select(nombre,cedula,enlace,certificado)
 
 data2 <- read_csv(file2) |> 
   mutate(enlace = str_remove(enlace, ".*file/d/"),
@@ -25,7 +25,7 @@ data2 <- read_csv(file2) |>
                        enlace,
                        ">Download</a>"),
          certificado = "IV Encuentro Nacional de Semilleros de Investigación") |> 
-  select(cedula,enlace,certificado)
+  select(nombre, cedula,enlace,certificado)
 
 data <- rbind(data1, data2)
 
@@ -74,7 +74,7 @@ server <- function(input, output) {
     data |> filter(cedula == dato()) |> 
       datatable(escape = FALSE,
                 options = list(dom = 't'),
-                colnames = c("Número Identificación", "Certificado", "Tipo"))
+                colnames = c("Nombres y Apellidos", "Número de identificación", "Certificado", "Tipo"))
   })
 }
 
