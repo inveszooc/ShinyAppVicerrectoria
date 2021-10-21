@@ -30,33 +30,53 @@ data2 <- read_csv(file2) |>
 data <- rbind(data1, data2)
 
 ui <- dashboardPage(skin = "yellow",
-  dashboardHeader(title = "Vicerrectoría de Investigaciones", titleWidth = 350),
-  dashboardSidebar(
-    sidebarMenu(
-      menuItemOutput("Certificados")
-    )
-  ),
-  dashboardBody(style = "background-color: #ffffff",
-                
-                fluidPage(
-                  fluidRow(column(4, align="left", offset = 1, 
-                                  a(href="https://www.funlam.edu.co/",
-                                    img(src="banner.jpeg", height=200, width=500), 
-                                    target="_blank")),
-                           column(4, align="center", offset = 1, 
-                                  a(href="https://www.funlam.edu.co/modules/centroinvestigaciones/", 
-                                    img(src="logo.jpg", height=100, width=100),
-                                    target="_blank"))),
-                  fluidRow(
-                    column(8, align="center", offset = 2,
-                           textInput("txt", "Ingrese Número de Identificación"),
-                           actionButton("button", "Buscar")
+                    dashboardHeader(title = "Vicerrectoría de Investigaciones", titleWidth = 350,
+                                    dropdownMenu(type = "notifications", icon = shiny::icon("code"),
+                                                 badgeStatus = "info", headerText = "Desarrolladores",
+                                                 notificationItem(
+                                                   icon("github"),
+                                                   href = "https://github.com/srobledog",
+                                                   text = "Sebastian Robledo"
+                                                 ),
+                                                 notificationItem(
+                                                   text = "Bryan Arias",
+                                                   icon("github"),
+                                                   href = "https://github.com/bryanariasq02"
+                                                 ),
+                                                 notificationItem(
+                                                   text = "Camilo García",
+                                                   icon("github"),
+                                                   href = "https://github.com/camilogs1"
+                                                 )
+                                    )),
+                    dashboardSidebar(
+                      sidebarMenu(
+                        menuItemOutput("Certificados"),
+                        menuItem("Proyecto Margaret", icon = icon("microscope"),
+                                 href = "https://ucatolicaluisamigo-investigaciones.shinyapps.io/margaret/")
+                      )
                     ),
-                    dataTableOutput('salida'),
-                    hr()
-                  ) 
-                )    
-  )
+                    dashboardBody(style = "background-color: #ffffff",
+                                  
+                                  fluidPage(
+                                    fluidRow(column(4, align="left", offset = 1, 
+                                                    a(href="https://www.funlam.edu.co/",
+                                                      img(src="banner.jpeg", height=200, width=500), 
+                                                      target="_blank")),
+                                             column(4, align="center", offset = 1, 
+                                                    a(href="https://www.funlam.edu.co/modules/centroinvestigaciones/", 
+                                                      img(src="logo.jpg", height=100, width=100),
+                                                      target="_blank"))),
+                                    fluidRow(
+                                      column(8, align="center", offset = 2,
+                                             textInput("txt", "Ingrese Número de Identificación"),
+                                             actionButton("button", "Buscar")
+                                      ),
+                                      dataTableOutput('salida'),
+                                      hr()
+                                    ) 
+                                  )    
+                    )
 )
 
 server <- function(input, output) {
