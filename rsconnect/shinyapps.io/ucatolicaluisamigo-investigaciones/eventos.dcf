@@ -5,9 +5,9 @@ account: ucatolicaluisamigo-investigaciones
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4907875
-bundleId: 5164079
+bundleId: 5167479
 url: https://ucatolicaluisamigo-investigaciones.shinyapps.io/eventos/
-when: 1634849768.30055
-lastSyncTime: 1634849768.30055
+when: 1634920052.98757
+lastSyncTime: 1634920052.98757
 asMultiple: FALSE
 asStatic: FALSE
