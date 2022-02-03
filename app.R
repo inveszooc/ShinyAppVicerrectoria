@@ -13,8 +13,7 @@ data1 <- read_csv(file1) |>
          enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
          enlace= str_c("<a href=",
                        enlace,
-                       ">Download</a>"),
-         certificado = "XXIV Encuentro Nacional de Investigaciones") |> 
+                       ">Download</a>")) |> 
   select(nombre,cedula,enlace,certificado)
 
 data2 <- read_csv(file2) |> 
