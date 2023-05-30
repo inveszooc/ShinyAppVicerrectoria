@@ -7,7 +7,7 @@ library(readxl)
 
 source(here("data","files.R"))
 
-data1 <- read_csv(file1) |> 
+data <- read_csv(file1) |> 
   mutate(enlace = str_remove(enlace, ".*file/d/"),
          enlace = str_remove(enlace, "/view?.*"),
          enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
@@ -16,20 +16,20 @@ data1 <- read_csv(file1) |>
                        ">Download</a>")) |> 
   select(nombre,cedula,enlace,certificado)
 
-data2 <- read_csv(file2) |> 
-  mutate(enlace = str_remove(enlace, ".*file/d/"),
-         enlace = str_remove(enlace, "/view?.*"),
-         enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
-         enlace= str_c("<a href=",
-                       enlace,
-                       ">Download</a>"),
-         certificado = "IV Encuentro Nacional de Semilleros de Investigación") |> 
-  select(nombre, cedula,enlace,certificado)
+# data2 <- read_csv(file2) |> 
+#   mutate(enlace = str_remove(enlace, ".*file/d/"),
+#          enlace = str_remove(enlace, "/view?.*"),
+#          enlace = str_c("https://drive.google.com/uc?id=",enlace,"&export=download&authuser=0"),
+#          enlace= str_c("<a href=",
+#                        enlace,
+#                        ">Download</a>"),
+#          certificado = "IV Encuentro Nacional de Semilleros de Investigación") |> 
+#   select(nombre, cedula,enlace,certificado)
 
-data <- rbind(data1, data2)
+# data <- rbind(data1, data2)
 
 ui <- dashboardPage(skin = "yellow",
-                    dashboardHeader(title = "Vicerrectoría de Investigaciones", titleWidth = 350,
+                    dashboardHeader(title = "SIGI ZOCC", titleWidth = 350,
                                     dropdownMenu(type = "notifications", icon = shiny::icon("code"),
                                                  badgeStatus = "info", headerText = "Desarrolladores",
                                                  tags$li(a(href = "https://github.com/srobledog",
@@ -48,21 +48,20 @@ ui <- dashboardPage(skin = "yellow",
                     ),
 dashboardSidebar(
   sidebarMenu(
-    menuItemOutput("Certificados"),
-    menuItem("Proyecto Margaret", icon = icon("microscope"),
-             href = "https://ucatolicaluisamigo-investigaciones.shinyapps.io/margaret/")
+    menuItemOutput("Certificados")
+   
   )
 ),
 dashboardBody(style = "background-color: #ffffff",
               
               fluidPage(
                 fluidRow(column(4, align="left", offset = 1, 
-                                a(href="https://www.funlam.edu.co/",
-                                  img(src="banner.jpeg", height=200, width=500), 
+                                a(href="https://investigacion.unad.edu.co/",
+                                  img(src="banner_1.jpg", height=200, width=500), 
                                   target="_blank")),
                          column(4, align="center", offset = 1, 
-                                a(href="https://www.funlam.edu.co/modules/centroinvestigaciones/", 
-                                  img(src="logo.jpg", height=100, width=100),
+                                a(href="https://semilleroszocc.wixsite.com/eventos", 
+                                  img(src="logo_1.jpg", height=100, width=100),
                                   target="_blank"))),
                 fluidRow(
                   column(8, align="center", offset = 2,
